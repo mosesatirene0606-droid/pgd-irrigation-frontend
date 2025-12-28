@@ -1,0 +1,64 @@
+What is Kc in agriculture?
+
+Kc means Crop Coefficient.
+
+In irrigation science (FAO-56), Kc is used to convert reference evapotranspiration
+ (ET₀) into actual crop water use (ETc):
+
+ETc = Kc × ET₀ 
+
+If your supervisor asks “How was Kc obtained?”
+
+You can confidently write:
+
+“Crop coefficient (Kc) values used in this system
+were adopted from FAO Irrigation and Drainage Paper No. 56. 
+The coefficients were selected based on crop type and growth stage, 
+ensuring scientific accuracy in the estimation of crop evapotranspiration (ETc).”
+
+
+How you will explain this in your thesis (EXACT WORDS)
+
+You can copy this:
+
+“Crop coefficient (Kc) values were obtained from FAO Irrigation and Drainage 
+Paper No. 56 and stored in a relational database indexed by crop type, growth stage, 
+and location. For this study, Maiduguri (Borno State) was selected as the reference location. 
+The system automatically retrieves the appropriate Kc based on user-selected crop and growth stage, 
+eliminating manual entry errors and ensuring scientific accuracy.”
+
+AT CREATE CROP from
+
+User selects State + Crop + Growth Stage
+Backend returns Kc
+Frontend fills input automatically
+
+
+NOTE: Kc depends on:
+
+State (location)
+
+Crop name
+
+Growth stage
+
+👉 Kc should NOT be typed by users
+👉 Kc should NOT be stored directly in crops
+
+
+HOW THIS LOOKS TO AN EXAMINER (VERY IMPORTANT)
+
+You can now say:
+
+“Crop coefficient values were not entered manually by users. Instead, 
+Kc values were dynamically retrieved from a location-specific database 
+table based on crop type and growth stage, ensuring scientific accuracy 
+and eliminating user bias.”
+
+HOW TO EXPLAIN THIS IN YOUR PROJECT (COPY-PASTE)
+“Climatic parameters required for FAO-56 Penman–Monteith 
+evapotranspiration were parameterized using long-term climatic 
+averages representative of Maiduguri, a semi-arid Sahelian region. 
+Default FAO-recommended values were applied for wind speed and humidity 
+where direct measurements were unavailable, ensuring model stability 
+and scientific validity.”
