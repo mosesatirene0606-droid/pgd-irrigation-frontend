@@ -1,3 +1,4 @@
+// src/PGDMockups.jsx
 import { useEffect, useState } from "react";
 import AuthFlow from "./flows/AuthFlow";
 import AppShell from "./shells/AppShell";
@@ -26,15 +27,18 @@ export default function PGDMockups() {
       setScreen("error");
 
       try {
-        await fetch("http://localhost:4000/api/notifications/frontend-error", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title: config.title,
-            message: config.message,
-            source: "frontend",
-          }),
-        });
+        await fetch(
+          `${import.meta.env.VITE_API_URL}/api/notifications/frontend-error`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: config.title,
+              message: config.message,
+              source: "frontend",
+            }),
+          }
+        );
       } catch {
         console.warn("Failed to log frontend error");
       }

@@ -1,3 +1,4 @@
+// src/pages/ResultsPage.jsx
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import API from "../api/client";
@@ -32,9 +33,14 @@ export default function ResultsPage() {
   async function exportCsv() {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:4000/api/estimations/export", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/estimations/export`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!res.ok) throw new Error("Export failed");
 
@@ -67,16 +73,23 @@ export default function ResultsPage() {
             onClick={exportCsv}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-xl"
-          >
+            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-xl">
             <Download size={16} /> Export CSV
           </motion.button>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <MetricPill label="ET₀" value={Number(latest.et0_mm).toFixed(2)} unit="mm/day" />
+          <MetricPill
+            label="ET₀"
+            value={Number(latest.et0_mm).toFixed(2)}
+            unit="mm/day"
+          />
           <MetricPill label="Kc" value={Number(latest.kc).toFixed(2)} />
-          <MetricPill label="ETc" value={Number(latest.etc_mm).toFixed(2)} unit="mm/day" />
+          <MetricPill
+            label="ETc"
+            value={Number(latest.etc_mm).toFixed(2)}
+            unit="mm/day"
+          />
           <MetricPill
             label="Net Irrigation"
             value={Number(latest.water_need_lm2).toFixed(2)}
