@@ -1,3 +1,5 @@
+// src/pages/ErrorScreen.jsx
+
 import { motion } from "framer-motion";
 
 export default function ErrorScreen({

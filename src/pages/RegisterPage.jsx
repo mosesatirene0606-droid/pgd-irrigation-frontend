@@ -1,3 +1,5 @@
+// src/pages/RegisterPage.jsx
+
 import { useState } from "react";
 import { useAuth } from "../api/context/AuthContext";
 import AuthInput from "../components/ui/AuthInput";

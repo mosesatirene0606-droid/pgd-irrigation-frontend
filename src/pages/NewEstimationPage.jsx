@@ -1,3 +1,4 @@
+// src/pages/NewEstimationPage.jsx
 import { useEffect, useState } from "react";
 import API from "../api/client";
 import Card from "../components/ui/Card";
@@ -15,12 +16,18 @@ export default function NewEstimationPage({ setScreen }) {
   }, []);
 
   async function loadData() {
-    const cropRes = await API.get("/api/crops");
-    const weatherRes = await API.get("/api/weather");
-    setCrops(cropRes.data || []);
-    setWeatherDates(weatherRes.data || []);
-  }
+    try {
+      const [cropRes, weatherRes] = await Promise.all([
+        API.get("/api/crops"),
+        API.get("/api/weather"),
+      ]);
 
+      setCrops(cropRes.data || []);
+      setWeatherDates(weatherRes.data || []);
+    } catch (err) {
+      console.error("Failed to load data", err);
+    }
+  }
   async function submitEstimation(e) {
     e.preventDefault();
     await API.post("/api/estimations", {
